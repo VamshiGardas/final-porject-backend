@@ -1,0 +1,23 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Debug log
+npm-debug.log*
+
+# Production log files
+*.log
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# MacOS folder attributes
+.DS_Store
+
+# Optional REPL history
+.node_repl_history
