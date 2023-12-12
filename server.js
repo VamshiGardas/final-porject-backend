@@ -5,7 +5,12 @@ const cors = require("cors");
 const app = express();
 
 // Update CORS settings to allow requests from your Vercel frontend URL
-app.use(cors({ origin: "https://your-vercel-frontend-url" })); // Replace with your Vercel frontend URL
+app.use(
+  cors({
+    origin:
+      "https://final-project-frontend-chc42vouc-vamshi-gardas-projects.vercel.app",
+  })
+); // Replace with your Vercel frontend URL
 
 app.use(express.json());
 
