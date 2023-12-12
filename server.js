@@ -8,7 +8,7 @@ const app = express();
 app.use(
   cors({
     origin:
-      "https://final-project-frontend-chc42vouc-vamshi-gardas-projects.vercel.app",
+      "https://final-project-frontend-ezsjr7mlr-vamshi-gardas-projects.vercel.app",
   })
 ); // Replace with your Vercel frontend URL
 
