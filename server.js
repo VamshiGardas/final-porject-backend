@@ -9,7 +9,8 @@ const app = express();
 app.use(
   cors({
     origin:
-      process.env.FRONTEND_URL || "https://your-vercel-frontend-url.vercel.app", // Replace with your actual Vercel frontend URL
+      process.env.FRONTEND_URL ||
+      "https://final-project-frontend-liart.vercel.app/", // Replace with your actual Vercel frontend URL
     optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );
