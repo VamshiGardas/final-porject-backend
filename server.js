@@ -8,7 +8,8 @@ const app = express();
 // Enable CORS for your Vercel frontend URL
 app.use(
   cors({
-    origin: "https://your-vercel-frontend-url.vercel.app", // Replace with your actual Vercel frontend URL
+    origin:
+      process.env.FRONTEND_URL || "https://your-vercel-frontend-url.vercel.app", // Replace with your actual Vercel frontend URL
     optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );
@@ -17,8 +18,7 @@ app.use(
 app.use(express.json());
 
 // MongoDB URL
-const mongoDBUrl =
-  "mongodb+srv://VAMSHI:abcd123@cluster0.9druc5w.mongodb.net/?retryWrites=true&w=majority";
+const mongoDBUrl = process.env.MONGODB_URL;
 
 // Connect to MongoDB with updated connection options
 mongoose
@@ -73,7 +73,7 @@ app.delete("/notes/:id", async (req, res) => {
   }
 });
 
-// Start server on port 5000
+// Start server on the specified port
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
