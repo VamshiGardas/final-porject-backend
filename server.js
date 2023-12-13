@@ -8,10 +8,13 @@ const app = express();
 // Enable CORS for your Vercel frontend URL
 app.use(
   cors({
-    origin:
-      process.env.FRONTEND_URL ||
-      "https://final-project-frontend-73n7rwubs-vamshi-gardas-projects.vercel.app", // Replace with your actual Vercel frontend URL
-    optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+    origin: [
+      "https://final-project-frontend-73n7rwubs-vamshi-gardas-projects.vercel.app/",
+      "https://final-project-frontend-73n7rwubs-vamshi-gardas-projects.vercel.app",
+      "https://final-project-frontend-3.vercel.app/",
+      // Add more frontend URLs as needed
+    ],
+    optionsSuccessStatus: 200,
   })
 );
 
