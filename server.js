@@ -4,17 +4,16 @@ const cors = require("cors");
 
 const app = express();
 
-// Update CORS settings to allow requests from your Vercel frontend URL
+// Hardcoded CORS origin
 app.use(
   cors({
-    origin:
-      "https://final-project-frontend-6i1vmsupe-vamshi-gardas-projects.vercel.app/",
+    origin: "https://final-project-frontend-liart.vercel.app/",
   })
-); // Replace with your Vercel frontend URL
+);
 
 app.use(express.json());
 
-// MongoDB connection details
+// Hardcoded MongoDB URL
 const mongoDBUrl =
   "mongodb+srv://VAMSHI:abcd123@cluster1.jrwompw.mongodb.net/yourDatabaseName?retryWrites=true&w=majority";
 mongoose
@@ -22,10 +21,10 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
 
-// Define Note Schema and Model
+// Define Note Schema and Model with basic validation
 const noteSchema = new mongoose.Schema({
-  title: String,
-  content: String,
+  title: { type: String, required: true },
+  content: { type: String, required: true },
   font: String,
   color: String,
 });
@@ -39,7 +38,7 @@ app.get("/notes", async (req, res) => {
     res.send(notes);
   } catch (err) {
     console.error("Error fetching notes", err);
-    res.status(500).send("Error fetching notes");
+    res.status(500).send("Server error");
   }
 });
 
@@ -47,10 +46,10 @@ app.post("/notes", async (req, res) => {
   try {
     const newNote = new Note(req.body);
     await newNote.save();
-    res.send(newNote);
+    res.status(201).send(newNote);
   } catch (err) {
     console.error("Error saving the note", err);
-    res.status(500).send("Error saving the note");
+    res.status(400).send("Error saving the note");
   }
 });
 
@@ -67,7 +66,7 @@ app.delete("/notes/:id", async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 5000;
+const port = 5000; // Hardcoded port number
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 module.exports = app;
