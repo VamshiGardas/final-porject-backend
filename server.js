@@ -5,13 +5,18 @@ const cors = require("cors");
 // Initialize express app
 const app = express();
 
-// Enable CORS for frontend interactions
-app.use(cors());
+// Enable CORS for your Vercel frontend URL
+app.use(
+  cors({
+    origin: "https://your-vercel-frontend-url.vercel.app", // Replace with your actual Vercel frontend URL
+    optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 
 // Body parser middleware to handle JSON data
 app.use(express.json());
 
-// MongoDB URL - replace with your actual MongoDB URL
+// MongoDB URL
 const mongoDBUrl =
   "mongodb+srv://VAMSHI:abcd123@cluster0.9druc5w.mongodb.net/?retryWrites=true&w=majority";
 
