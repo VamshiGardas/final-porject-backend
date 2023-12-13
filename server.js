@@ -4,10 +4,10 @@ const cors = require("cors");
 
 const app = express();
 
-// Hardcoded CORS origin
+// Updated CORS origin without trailing slash
 app.use(
   cors({
-    origin: "https://final-project-frontend-liart.vercel.app/",
+    origin: "https://final-project-frontend-liart.vercel.app",
   })
 );
 
@@ -31,10 +31,11 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model("Note", noteSchema);
 
-// Routes
+// Routes with added logging
 app.get("/notes", async (req, res) => {
   try {
     const notes = await Note.find();
+    console.log("Fetched notes:", notes); // Added for debugging
     res.send(notes);
   } catch (err) {
     console.error("Error fetching notes", err);
@@ -46,6 +47,7 @@ app.post("/notes", async (req, res) => {
   try {
     const newNote = new Note(req.body);
     await newNote.save();
+    console.log("Saved new note:", newNote); // Added for debugging
     res.status(201).send(newNote);
   } catch (err) {
     console.error("Error saving the note", err);
@@ -57,8 +59,10 @@ app.delete("/notes/:id", async (req, res) => {
   try {
     const result = await Note.findByIdAndDelete(req.params.id);
     if (!result) {
+      console.log("Note not found with ID:", req.params.id); // Added for debugging
       return res.status(404).send("The note with the given ID was not found.");
     }
+    console.log("Deleted note:", result); // Added for debugging
     res.send(result);
   } catch (err) {
     console.error("Error deleting the note", err);
