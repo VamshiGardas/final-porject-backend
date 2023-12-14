@@ -12,6 +12,9 @@ app.use(
       "https://final-project-frontend-73n7rwubs-vamshi-gardas-projects.vercel.app/",
       "https://final-project-frontend-73n7rwubs-vamshi-gardas-projects.vercel.app",
       "https://final-project-frontend-3.vercel.app/",
+      "https://final-project-frontend-3.vercel.app/",
+      "https://final-project-frontend-vamshi-gardas-projects.vercel.app/",
+      "https://final-project-frontend-vamshi-gardas-projects.vercel.app",
       // Add more frontend URLs as needed
     ],
     optionsSuccessStatus: 200,
